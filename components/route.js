@@ -8,7 +8,7 @@ const Routes = (props) => (
     <Router cardStyle={{ backgroundColor: 'white' }}>
         <ScrollView>
             <Scene type="reset" key="landing" component={Landing} title="Home" initial={true} />
-            <Scene key="map" component={MapPage} title="Coffee Map"/>
+            <Scene key="map" component={MapPage} title="Map"/>
         </ScrollView>
     </Router>
 )

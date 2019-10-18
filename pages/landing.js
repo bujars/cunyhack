@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 
 class Landing extends React.Component {
     goToAbout = () => {
-        Actions.coffeeMap()
+        Actions.map()
     }
 
     render() {
