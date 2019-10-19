@@ -1,6 +1,8 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import MapView,{ PROVIDER_GOOGLE } from 'react-native-maps';
+import { StyleSheet, View, Text } from 'react-native'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import axios from 'axios';
+import { resume } from 'expo/build/AR';
 
 export default class map extends React.Component {
 	_isMounted = false;
@@ -9,11 +11,41 @@ export default class map extends React.Component {
 		this.state = {
 			marginBottom: 1,
 			initialRegion: [],
+			resturantPins: []
 		}
 	}
 
-    async componentDidMount() {
+	async componentDidMount() {
 		this._isMounted = true;
+		let resturantArr = [
+			{ name: 'Dennys store', location: [40.7678398, -73.9645291] },
+			{ name: 'jackies store', location: [40.7151678, -74.0116044] },
+			{ name: 'kevins store', location: [40.7557665, -73.99116459999999] },
+			{ name: 'engers store', location: [40.7478091, -73.9873339] }
+		]
+		console.log(resturantArr[0].location[0])
+		let resturantPins = [];
+		resturantArr.map((item,i) => {
+			console.log(item)
+			resturantPins.push(
+				<MapView.Marker
+					key={i++}
+					coordinate={{
+						"latitude": item.location[0],
+						"longitude": item.location[1],
+					}}
+					title={item.name}>
+					<MapView.Callout>
+						<Text>{item.name}</Text>
+					</MapView.Callout>
+				</MapView.Marker>
+			)
+		})
+		if (this._isMounted) {
+			this.setState({
+				resturantPins: resturantPins
+			})
+		}
 		try {
 			await navigator.geolocation.getCurrentPosition(
 				async position => {
@@ -26,10 +58,10 @@ export default class map extends React.Component {
 						latitudeDelta: 0.01,
 						longitudeDelta: 0.01
 					}
-					this.mapView.animateToRegion(region,1000);
-					if(this._isMounted){
+					this.mapView.animateToRegion(region, 1000);
+					if (this._isMounted) {
 						this.setState({
-							initialRegion:region
+							initialRegion: region
 						})
 					}
 				},
@@ -39,19 +71,19 @@ export default class map extends React.Component {
 		} catch (err) {
 			console.log(err)
 		}
-    }
-    
+	}
+
 	componentWillUnmount() {
 		this._isMounted = false;
-    }
-    
+	}
+
 	onMapReady = () => this.setState({ marginBottom: 0 })
 
 	render() {
 		return (
 			<View style={styles.container}>
-                <MapView 
-                    provider={PROVIDER_GOOGLE}
+				<MapView
+					provider={PROVIDER_GOOGLE}
 					onMapReady={this.onMapReady}
 					style={[styles.map, { flex: 1, marginBottom: this.state.marginBottom }]}
 					initialRegion={{
@@ -65,7 +97,7 @@ export default class map extends React.Component {
 					showsCompass={false}
 					loadingEnabled={true}
 					ref={ref => { this.mapView = ref }}>
-					{this.state.distance}
+					{this.state.resturantPins}
 				</MapView>
 			</View>
 		);
