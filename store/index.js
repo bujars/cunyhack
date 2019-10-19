@@ -1,9 +1,9 @@
 import { combineReducers, applyMiddleware, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
-import restaurant from './utilities/restaurant';
+import restaurantReducer from './utilities/restaurant';
 import nonProfit from './utilities/nonProfitReducer'
 const rootReducer = combineReducers({
-    restaurant,
+    restaurantReducer,
     nonProfit
 });
 const middleware = applyMiddleware(thunkMiddleware);
