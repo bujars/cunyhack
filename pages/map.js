@@ -1,8 +1,9 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, SafeAreaView, View, Text } from 'react-native'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import axios from 'axios';
 import { resume } from 'expo/build/AR';
+import Feed from '../pages/Feed';
 
 export default class map extends React.Component {
 	_isMounted = false;
@@ -81,11 +82,11 @@ export default class map extends React.Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
+			<SafeAreaView style={styles.container}>
 				<MapView
 					provider={PROVIDER_GOOGLE}
 					onMapReady={this.onMapReady}
-					style={[styles.map, { flex: 1, marginBottom: this.state.marginBottom }]}
+					style={[styles.map, {marginBottom: this.state.marginBottom }]}
 					initialRegion={{
 						latitude: 40.7549,
 						longitude: -73.9840,
@@ -99,7 +100,7 @@ export default class map extends React.Component {
 					ref={ref => { this.mapView = ref }}>
 					{this.state.resturantPins}
 				</MapView>
-			</View>
+			</SafeAreaView>
 		);
 	}
 }
