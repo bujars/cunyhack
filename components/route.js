@@ -5,15 +5,17 @@ import Landing from '../pages/landing'
 import MapPage from '../pages/map'
 import SignUp from '../pages/signUp'
 import Feed from '../pages/Feed'
+import retaurantProfilePage from '../pages/restuarantProfile'
 
 const Routes = (props) => (
     <Router cardStyle={{ backgroundColor: 'white' }}>
         <ScrollView>
-            <Scene key="signUp"  component={SignUp} initial={true}/>
+            <Scene key="signUp"  component={SignUp} />
             <Scene type="reset" component={Landing} title="Home" />
             <Scene key='feed' component={Feed} title='Feed' />
             <Scene type="reset" component={Landing} title="Home"  />
             <Scene key="map" component={MapPage} title="Map"/>
+            <Scene key="retaurantProfile" component={retaurantProfilePage} title="Profile" initial={true}/>
         </ScrollView>
     </Router>
 )
