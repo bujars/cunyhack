@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Image, Text} from 'react-native';
-import {Container, Content, Left, CardItem, Body, Right, Card} from 'native-base';
+import {StyleSheet, Image, Text, SectionList, SafeAreaView, Dimensions} from 'react-native';
+import {Content, Left, CardItem, Body, Right, Card} from 'native-base';
 import { connect } from 'react-redux';
 import OrderItem from '../components/OrderItem';
 import {getNonProfitOrders} from '../store/actions'
@@ -12,22 +12,25 @@ class NonProfitProfile extends Component {
 
     renderOrders() {
         if (this.props.orders.length !== 0) {
-            return this.props.orders.map((order, index) => {
-                return (
-                   <OrderItem picture={order.picture} 
-                   itemName={order.itemName} 
-                   quantity={order.quantity} 
-                   key={`order${index}`} 
-                />
-                )
-
-            });
+            const DATA = [{
+                title: 'Orders',
+                data: this.props.orders
+            }];
+            console.log(DATA)
+            return <SectionList
+                        sections={DATA}
+                        keyExtractor={(item, index) => `order${index}`}
+                        renderItem={({ item }) => <OrderItem picture={item.picture} itemName={item.itemName} quantity={item.quantity} />}
+                        renderSectionHeader={({ section: { title } }) => (
+                            <Text style={styles.header}>{title}</Text>
+                        )}
+                    />
         }
     }
 
     render() {
         return (
-            <Container>
+            <SafeAreaView>
                 <Card>
                     <CardItem>
                         <Left>
@@ -49,14 +52,19 @@ class NonProfitProfile extends Component {
                         {this.renderOrders()}
                     </Card>
                 </Body>
-            </Container>
+            </SafeAreaView>
         )
     }
 }
 
 const styles = StyleSheet.create({
     cardStyle: {
-        width: 350
+        width: 350,
+        height: Dimensions.get('screen').height
+    },
+    headerStyle: {
+        color: '#000',
+        fontSize: 20
     }
 });
 
