@@ -1,11 +1,11 @@
-import {GET_NONPROFIT_SUCCESS} from './actionTypes';
+import {GET_NONPROFIT_SUCCESS, GET_ORDERS_SUCCESS} from './actionTypes';
 import firebase from 'firebase';
 
-export function getNonProfits() {
-    let {currentUser} = firebase.auth();
-    firebase.database().ref(`/users/${currentUser.uid}`).on('value', snapshot => {
-        snapshot.forEach(child => {
-            let nonProfitUsers = [];
-        });
-    })
+export function getNonProfitOrders() {
+    data = [
+        {picture: '#', itemName: 'apple', quantity:2 },
+        { picture: '#', itemName: 'burgers', quantity: 5 },
+        { picture: '#', itemName: 'pasta', quantity: 7 }
+    ]
+    return {type: GET_ORDERS_SUCCESS, payload: data};
 }
