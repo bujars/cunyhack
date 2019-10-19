@@ -1,8 +1,13 @@
 import React from 'react';
 import {Text} from 'react-native';
+import {CardItem} from 'native-base';
 
 function OrderItem(props) {
-    return <Text>{props.children}</Text>
+    return (
+        <CardItem>
+
+        </CardItem>
+    );
 }
 
-export default OrderItem;
+export default OrderItem;``
