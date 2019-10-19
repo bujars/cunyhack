@@ -7,7 +7,7 @@ import OrderItem from '../components/OrderItem';
 class NonProfitProfile extends Component {
 
     render() {
-        const orders = ["One", 'two', 'three'];
+        const {orders} = this.props;
         return (
             <Container>
                 <Card>
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-    const { user } = state.users;
-    return { user }
+    const { orders } = state.nonProfit;
+    return { orders }
 }
 
-export default connect()(NonProfitProfile);
+export default connect(mapStateToProps)(NonProfitProfile);
