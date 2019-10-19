@@ -14,6 +14,10 @@ class Landing extends React.Component {
                     <TouchableOpacity onPress={this.goToAbout}>
                         <Text>This is HOME!</Text>
                     </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => Actions.foodListing()}>
+                        <Text>Food Listing</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         )
