@@ -3,6 +3,7 @@ import { Router, Scene } from 'react-native-router-flux'
 import { ScrollView } from 'react-native'
 import Landing from '../pages/landing'
 import MapPage from '../pages/map'
+import SignIn from '../pages/signIn'
 import SignUp from '../pages/signUp'
 import NonProfitProfile from '../pages/NonProfitProfile';
 import Feed from '../pages/Feed'
@@ -13,8 +14,12 @@ import foodUploadPage from '../pages/foodUpload'
 const Routes = (props) => (
     <Router cardStyle={{ backgroundColor: 'white' }}>
         <ScrollView>
+//             <Scene key="signUp" component={signUp} title="signUp" initial={true}/>
+            <Scene key="landing" type="reset" component={Landing} title="Home"  />
+            <Scene key="map" component={MapPage} title="Map"/>
+            <Scene key="SignIn" component={SignIn} title="signin"/>
 
-            <Scene key="signUp"  component={SignUp} />
+            <Scene key="signUp"  component={SignUp} initial={true}/>
             <Scene type="reset" component={Landing} title="Home" />
             <Scene key='feed' component={Feed} title='Feed' />
             <Scene type="reset" component={Landing} title="Home"  />
