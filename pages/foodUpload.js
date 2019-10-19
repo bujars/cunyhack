@@ -17,6 +17,13 @@ class foodUpload extends React.Component {
         this.setState({ chosenDate: newDate });
     }
 
+    uploadImage = async(uri) => {
+        const response = await fetch(uri);
+        const blob = await response.blob(); 
+        var ref = firebase.storage().ref().child("my-image");
+        return ref.put(blob);
+    }
+
     render() {
         return (
             <Container>
