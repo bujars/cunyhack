@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
+import { connect } from 'react-redux'
 class Landing extends React.Component {
     goToAbout = () => {
         Actions.map()
@@ -31,4 +31,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
 })
-export default Landing
+const mapStateToProps = state => ({
+    users : state.restaurantReducer.users
+});
+export default connect(
+  mapStateToProps,
+  {}
+)(Landing)

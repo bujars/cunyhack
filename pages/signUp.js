@@ -2,19 +2,76 @@ import React from 'react'
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import { Container, Content, Form, Item, Input, Button, Card, CardItem } from 'native-base';
-
+import { connect } from 'react-redux'
+import * as Permissions from 'expo-permissions';
+import { Camera } from 'expo-camera';
+import {addUser} from '../store/actions/NonProfitAction';
 const width= '80%';
-class SignUp extends React.Component {
+class SignUp extends React.Component { 
     constructor(props) {
         super(props);
         this.state = {
           selected2: undefined,
           seg1: 1,
-          seg2: 1
+          seg2: 1,
+          type:"",
+          organization:"",
+          email:"",
+          password: "",
+          phoneNumber: "",
         };
     }
+    componentDidMount(){
+        console.log(this.props.users)
+    }
     goToAbout = () => {
-        Actions.map()
+        Actions.landing()
+    }
+    onChangeType1 = ()=>{
+        if(this.state.seg1==2){
+            this.setState({ seg1: 1,seg2: 1})
+        }
+        else{
+            this.setState({ seg1: 2,seg2: 1 })
+        }
+        this.setState({type: "restaurant"})
+    }
+    onChangeType2 = ()=>{
+        if(this.state.seg1==2){
+            this.setState({ seg1: 1,seg2: 1})
+            this.setState({type: ""})
+        }
+        else{
+            this.setState({ seg1: 1,seg2: 2 })
+            this.setState({type: "non-profit"})
+        }
+        
+    }
+    onChangeEmail = (email) =>{
+        this.setState({email: email})
+    }
+    onChangeOrganization = (organization) =>{
+        this.setState({organization: organization})
+    } 
+    onChangeAddress= (address) =>{
+        this.setState({address: address})
+    } 
+    onChangePassword = (password) =>{
+        this.setState({password: password})
+    }    
+    onChangePhoneNumber = (phoneNumber) =>{
+        this.setState({phoneNumber: phoneNumber})
+    }
+    onSubmit = ()=>{
+        let user ={
+            type: this.state.type,
+            organization: this.state.organization,
+            email: this.state.email,
+            password: this.state.password,
+            phoneNumber: this.state.phoneNumber
+        }
+        // this.props.addUser(user)
+        Actions.landing()
     }
     render() {
         return (
@@ -24,35 +81,38 @@ class SignUp extends React.Component {
                     <Form style={styles.form}>
                         <Text>Select Organization</Text>
                         <Card>
-                            <CardItem style={styles.dollar, {
+                            <CardItem   style={styles.dollar, {
 									backgroundColor: this.state.seg1 === 1 ? "white" :this.state.seg1 === 2 ? "#6495ED" : undefined,
 									borderColor: "red"
-								}} header button onPress={() => (this.state.seg2==2)? this.setState({ seg1: 2,seg2: 1}):this.setState({ seg1: 1,seg2: 1 })}>
+                                }} header button 
+                                onPress={()=>this.onChangeType1()}
+                                >
                             <Text>Restaurant</Text>
                             </CardItem>
                             <CardItem style={styles.dollar, {
 									backgroundColor: this.state.seg2 === 1 ? "white" :this.state.seg2 === 2 ? "#6495ED" : undefined,
 									borderColor: "red"
-								}} header button onPress={() => (this.state.seg1==1)? this.setState({ seg1: 1,seg2: 2}):this.setState({seg2:1,seg2: 1 })}>
+								}} header button onPress={()=>this.onChangeType2()}>
                             <Text>Non-profit</Text>
                             </CardItem>
                         </Card>
-                         <Item>
-                            <Input placeholder="Email" />
-                        </Item>
-                       <Item>
-                            <Input placeholder="Password" />
+
+                        <Item>
+                            <Input onChangeText={(text)=> this.onChangeEmail(text)} placeholder="Email" />
                         </Item>
                         <Item>
-                            <Input placeholder="Name of Organization" />
+                            <Input onChangeText={(text)=> this.onChangePassword(text)} placeholder="Password" />
                         </Item>
                         <Item>
-                            <Input placeholder="Address of your organization" />
+                            <Input onChangeText={(text)=> this.onChangeOrganization(text)} placeholder="Name of Organization" />
                         </Item>
                         <Item>
-                            <Input placeholder="Phone Number" />
+                            <Input onChangeText={(text)=> this.onChangeAddress(text)} placeholder="Address of your organization" />
                         </Item>
-                        <Button style={styles.signUpButton}>
+                        <Item>
+                            <Input onChangeText={(text)=> this.onChangePhoneNumber(text)} placeholder="Phone Number" />
+                        </Item>
+                        <Button style={styles.signUpButton} onPress={()=> this.onSubmit()}>
                             <Text style={styles.buttonText}>Submit</Text>
                         </Button>
                     </Form>
@@ -112,4 +172,11 @@ const styles = StyleSheet.create({
     },
     
 })
-export default SignUp
+const mapStateToProps = state => ({
+    users : state.restaurantReducer.users
+});
+export default connect(
+  mapStateToProps,
+  {addUser}
+)(SignUp)
+// export default SignUp
