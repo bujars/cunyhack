@@ -73,8 +73,12 @@ class SignUp extends React.Component {
         // this.props.addUser(user)
         Actions.landing()
     }
+    goSignIn = () => {
+        Actions.SignIn()
+    }
     render() {
         return (
+
             <Container style={styles.content}>
                 <Content>
                     <Text style={styles.title}>Sign Up</Text>
