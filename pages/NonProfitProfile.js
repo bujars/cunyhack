@@ -3,11 +3,29 @@ import {StyleSheet, Image, Text} from 'react-native';
 import {Container, Content, Left, CardItem, Body, Right, Card} from 'native-base';
 import { connect } from 'react-redux';
 import OrderItem from '../components/OrderItem';
+import {getNonProfitOrders} from '../store/actions'
 
 class NonProfitProfile extends Component {
+    componentDidMount() {
+        this.props.getNonProfitOrders();
+    }
+
+    renderOrders() {
+        if (this.props.orders.length !== 0) {
+            return this.props.orders.map((order, index) => {
+                return (
+                   <OrderItem picture={order.picture} 
+                   itemName={order.itemName} 
+                   quantity={order.quantity} 
+                   key={`order${index}`} 
+                />
+                )
+
+            });
+        }
+    }
 
     render() {
-        const {orders} = this.props;
         return (
             <Container>
                 <Card>
@@ -28,11 +46,7 @@ class NonProfitProfile extends Component {
                 </Card>
                 <Body>
                     <Card style={styles.cardStyle}>
-                        {
-                            orders.map(order => {
-                                return <OrderItem>{order}</OrderItem>
-                            })
-                        }
+                        {this.renderOrders()}
                     </Card>
                 </Body>
             </Container>
@@ -42,7 +56,7 @@ class NonProfitProfile extends Component {
 
 const styles = StyleSheet.create({
     cardStyle: {
-        width: 200
+        width: 350
     }
 });
 
@@ -51,4 +65,4 @@ function mapStateToProps(state) {
     return { orders }
 }
 
-export default connect(mapStateToProps)(NonProfitProfile);
+export default connect(mapStateToProps, {getNonProfitOrders})(NonProfitProfile);
