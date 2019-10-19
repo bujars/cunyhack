@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {StyleSheet, Image, SafeAreaView, View, Text, ScrollView, FlatList} from 'react-native';
-import {Container} from 'native-base';
+import {StyleSheet, Image, Text, ScrollView, FlatList} from 'react-native';
+import {Container, Content, Left, CardItem, Body, Header, Card, Right} from 'native-base';
 import StarRating from 'react-native-star-rating';
 
-class restuarantProfile extends Component {
+class resturantProfile extends Component {
     constructor(){
         super();
         this.state = {
@@ -19,6 +19,8 @@ class restuarantProfile extends Component {
             />
         )
     }
+
+    
 
     onStarRatingPress(rating) {
         this.setState({
@@ -43,54 +45,51 @@ class restuarantProfile extends Component {
             address } = this.props;
 
         return (
-            <SafeAreaView style={styles.container}>
-                <View style={styles.information} >
-
-                    {/* <View style={{flexDirection:'row'}} >
-                        <Image source={} style={{width:'30%', aspectRatio:1, alignContent: 'center'}} />
-                    </View> */}
-
-                    <View>
-                        <Text style={{ fontSize: 24,  alignContent: 'center' }} >{restaurantName}</Text>
-                        <StarRating
+            <Container>
+                <Card>
+                    <CardItem>
+                        <Right>
+                            <Text>{"Name"}</Text>
+                        </Right>
+                    </CardItem>
+                    <CardItem>
+                        <Right>
+                            <Text>{"Address"}</Text>
+                        </Right>
+                    </CardItem>
+                    <CardItem>
+                        <Left>
+                            <Image  source={{uri: '#'}}/>
+                        </Left>
+                        <Right>
+                            <StarRating
                             disabled={false}
                             maxStars={5}
                             rating={this.state.starCount}
-                            selectedStar={(rating) => this.onStarRatingPress(rating)}
-                        />
-                        <Text style={{ fontSize: 24, alignContent: 'center' }} >{address}</Text>
-                        <Text style={{ fontSize: 24, alignContent: 'center' }} >meals served : {mealsServed}</Text>
-                    </View>
-
-
-                </View>
-
-                {/* {this.renderPostHeader()} */}
-
-                    <ScrollView>
+                            />
+                        </Right>
+                    </CardItem>
+                    <CardItem>
+                        <Right>
+                            <Text>{"Food Served"}</Text>
+                        </Right>
+                    </CardItem>
+                </Card>
+            <Body>
+                <ScrollView>
                         <FlatList
                             data = {posts}
                             renderItem = {this.renderPostCard}
                             numColumns = {2}
                             keyExtractor = {(PostCard) => PostCard[0]}
                         />
-                    </ScrollView>
-
-            </SafeAreaView>
+                </ScrollView>
+            </Body>
+        </Container>
         )
     }
 } 
 
-const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        // backgroundColor: white,
-    },
-    information: {
-        justifyContent:'space-around',
-        flexDirection: 'row'
-    }
-});
 
 // const mapStateToProps = state => {
 //     let feedList = state.Feed;
@@ -123,5 +122,5 @@ const styles = StyleSheet.create({
 //     }
 // }
 
-export default restuarantProfile
+export default resturantProfile;
 
