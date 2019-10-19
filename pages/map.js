@@ -1,7 +1,6 @@
 import React from 'react'
-import { TouchableOpacity, Text, Dimensions, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import MapView,{ PROVIDER_GOOGLE } from 'react-native-maps';
-import axios from 'axios';
 
 export default class map extends React.Component {
 	_isMounted = false;
