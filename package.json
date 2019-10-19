@@ -12,22 +12,8 @@
     "expo": "^35.0.0",
     "expo-cli": "^3.4.1",
     "firebase": "^7.2.1",
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 9b5eaedd415c125f75b9719c4351860fb75d9497
->>>>>>> eb932046915f7cbd332019dc8f7ff43b0af74bf7
     "expo-camera": "~7.0.0",
-    "expo-cli": "^3.4.1",
     "expo-font": "~7.0.0",
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    "firebase": "^7.2.1",
->>>>>>> 9b5eaedd415c125f75b9719c4351860fb75d9497
->>>>>>> eb932046915f7cbd332019dc8f7ff43b0af74bf7
-    "native-base": "^2.13.8",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",

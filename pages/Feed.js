@@ -5,8 +5,8 @@ import { Actions } from 'react-native-router-flux';
 class Feed extends React.Component {
 
     renderFoodName = (foodName) => {
-        if (foodName.length >14)
-            return <Text style={{fontSize:10}} > {foodName.substring(0,14)}... </Text>
+        if (foodName.length >20)
+            return <Text style={{fontSize:10}} > {foodName.substring(0,20)}... </Text>
         else
             return <Text style={{fontSize:10}} > {foodName} </Text>
     }
@@ -15,12 +15,19 @@ class Feed extends React.Component {
         const {restaurantName, foodName, pictureURL, quantity, description, expirationDate,postDate} = listing.item[1][0];
         let listingInfo = {restaurantName, foodName, pictureURL, quantity, description, expirationDate, postDate};
         return (
-            <TouchableOpacity style={styles.feedList}  onPress={() => Actions.listingDetails(listingInfo)} >
+            <TouchableOpacity style={{height:200, aspectRatio:.75, alignItems:'center', borderWidth:1, marginRight:5}}  onPress={() => Actions.listingDetails(listingInfo)} >
                 <Text style={{textAlign:'center', fontWeight:'bold'}} > {restaurantName} </Text>
-                <Image source={{uri: pictureURL}} style={{width:'100%', aspectRatio:1}} /> 
+                <Image source={{uri: pictureURL}} style={{width:'75%', aspectRatio:1}} /> 
                 {this.renderFoodName(foodName)}
                 <Text style={{fontStyle:'italic', color:'grey', fontSize:10}} > {quantity} left </Text>
             </TouchableOpacity>
+            
+            // <TouchableOpacity style={styles.feedList}  onPress={() => Actions.listingDetails(listingInfo)} >
+            //     <Text style={{textAlign:'center', fontWeight:'bold'}} > {restaurantName} </Text>
+            //     <Image source={{uri: pictureURL}} style={{width:'100%', aspectRatio:1}} /> 
+            //     {this.renderFoodName(foodName)}
+            //     <Text style={{fontStyle:'italic', color:'grey', fontSize:10}} > {quantity} left </Text>
+            // </TouchableOpacity>
         )
     }
 
@@ -43,25 +50,27 @@ class Feed extends React.Component {
             feedList.push(listing);
         }
         return (
-            <View style={styles.container} >
-                <Text style={{textAlign:'right'}} > FILTER ICON </Text>
+            <SafeAreaView style={styles.container} >
                 <FlatList
-                    numColumns={3}
+                    horizontal
+                    style={{marginRight:10, marginLeft:10}}
                     data = {feedList}
                     renderItem = {this.renderListingCard}
                     keyExtractor = {(listingCard) => listingCard[0]}
                     initialNumToRender = {10}
                 />
-            </View>
+            </SafeAreaView>
         )
     }
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        bottom:0,
+        position:'absolute',
     },
     feedList:{
-        width: '28%',
+        height: '25%',
+        aspectRatio:1,
         margin: '2.6%',
         marginVertical: 10,
         borderBottomLeftRadius: 7,
