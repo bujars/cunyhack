@@ -10,18 +10,10 @@
   "dependencies": {
     "axios": "^0.19.0",
     "expo": "^35.0.0",
-<<<<<<< HEAD
     "expo-cli": "^3.4.1",
     "firebase": "^7.2.1",
-=======
->>>>>>> 9b5eaedd415c125f75b9719c4351860fb75d9497
     "expo-camera": "~7.0.0",
-    "expo-cli": "^3.4.1",
     "expo-font": "~7.0.0",
-<<<<<<< HEAD
-=======
-    "firebase": "^7.2.1",
->>>>>>> 9b5eaedd415c125f75b9719c4351860fb75d9497
     "native-base": "^2.13.8",
     "react": "16.8.3",
     "react-dom": "16.8.3",
