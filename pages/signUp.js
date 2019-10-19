@@ -6,12 +6,18 @@ class SignUp extends React.Component {
     goToAbout = () => {
         Actions.map()
     }
+    goSignIn = () => {
+        Actions.SignIn()
+    }
     render() {
         return (
             <ScrollView>
                 <View style={styles.container}>
                     <TouchableOpacity onPress={this.goToAbout}>
                         <Text>This is the sign up</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={this.goSignIn}>
+                        <Text>This is the sign In</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>

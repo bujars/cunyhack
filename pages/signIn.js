@@ -5,17 +5,18 @@ import React from 'react'
 //We added this via npm
 //Command: npm i native-base -s
 import { Container, Item, Form, Input, Button, Label } from "native-base";
-import { StyleSheet, View, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, View, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
 
 //It helps users to define all the routes in one central place and navigate and communicate between different screens in an easy way
 import { Actions } from 'react-native-router-flux';
+import firebase from 'firebase';
 
 //This allows us to connect our page to firebase
 //import * as firebase from "firebase";
 //Run this: npm i firebase --save 
 
 
-class SignIN extends React.Component {
+class SignIn extends React.Component {
     
     //State is data that will control a component that changes. 
     //This is the state object with properoties email and password
@@ -41,63 +42,66 @@ class SignIN extends React.Component {
 
     //This is function login which will take in the email and password from the state. 
     //It will have to use FireBase authentication 
-    login = (email, password) => {
+    login = () => {
         try{
-            firebase.auth().signInWithEmailAndPassword(email, password);
-            firebase.auth().onAuthStateChanged(user => { alert(user.email);
+            firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            //console.log(this.state.email + " " + this.state.password)
+            //firebase.auth().onAuthStateChanged(user => { alert(user.email);})
             Actions.landing();
-            })
         }catch(error){
             //Do not allow sign in until there is full authentication.
-            console.log(error.toString(error))
+            console.log("You have an error. Please try again")
+            //console.log(error.toString(error))
         }
     };
 
+    //Go to the sign up page. --> Routing is handled in components/route.js 
 
-    goToLanding = () => {
-        Actions.landing()
+    goToSignUp = () => {
+        Actions.signUp()
     }
 
     render() {
         return (
             //ScrollView is a generic scrolling container 
             //View is a container that supports layout with styling
-            <ScrollView>
-                <View style = {styles.container}>
-                    <Title>CUNY Hackathon</Title>
-                </View>
-                <View style={styles.container}>
-                    <TouchableOpacity onPress={this.goToAbout}>
-                        <Text>This is the sign in</Text>
-                    </TouchableOpacity>
-                </View>
-            </ScrollView>
             <Container style={styles.container}>
+                <Image style={styles.image} source={{uri : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLzueCaaDVq8PP-nx0491QUkqQtSF6hq2acO7Ix4LchOR7EOOZ&s"}}/>
+                    
                 <Form>
+                <Item floatingLabel>
                     <Label>Email</Label>
                     <Input
-                    autoCapitalize="none"
-                    autCorrect={false}
-                    //This is the property which takes in an input, and calls it email. Then we set the properity email on the state, ie the current object
-                    onChangeText = {email => this.setState({ email })}/>
+                        autoCapitalize="none"
+                        autCorrect={false}
+                        //This is the property which takes in an input, and calls it email. Then we set the properity email on the state, ie the current object
+                        onChangeText = {email => this.setState({ email })}/>
+                </Item>
+                <Item floatingLabel>
                     <Label>Password</Label>
                     <Input
-                    secureTextEntry={true}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    onChangeText = {password => this.setState({password})}
+                        secureTextEntry={true}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        onChangeText = {password => this.setState({password})}
                     />
-                    <Button full rounded style={{ marginTop: 20 }}>
-                        <Text>SignIN</Text>
-                    </Button>
-                    <Button full rounded success style={{ marginTop: 20 }}
-                    //When the sign up button is pressed, we call the goToSignUp function
-                    onPress={this.goToSignUp}
-                    > 
-                        <Text>Signup</Text>
-                    </Button>
+                </Item>
+
                 </Form>
+                <Item style={{flexDirection: "row", justifyContent: "space-around"}}>
+                    <Button style={styles.button}  rounded
+                    onPress={() => this.login()}>
+                        <Text>Sign in</Text>
+                    </Button>
+                    <Button  rounded success style={styles.button}
+                        //When the sign up button is pressed, we call the goToSignUp function
+                        onPress={this.goToSignUp}
+                    > 
+                        <Text>Sign up</Text>
+                    </Button>
+                </Item>
             </Container>
+
             
         )
     }
@@ -105,13 +109,20 @@ class SignIN extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
+        //alignItems: "center",
+        justifyContent: "center"
     },
-    title: {
-        fontSize : 19,
-        color : "#0000AA",
+    button: {
+        marginTop : 20,
+        marginLeft: 0,
+        marginRight: 0,
+        width: "40%", 
+        justifyContent : "center"
+    },
+    image: {
+        width : 100, 
+        height : 100,
+        alignSelf: "center"
     },
 });
 export default SignIn
