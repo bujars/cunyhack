@@ -47,7 +47,7 @@ class SignIn extends React.Component {
             firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
             //console.log(this.state.email + " " + this.state.password)
             //firebase.auth().onAuthStateChanged(user => { alert(user.email);})
-            Actions.landing();
+            Actions.map();
         }catch(error){
             //Do not allow sign in until there is full authentication.
             console.log("You have an error. Please try again")
