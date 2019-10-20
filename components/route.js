@@ -20,7 +20,7 @@ const Routes = (props) => (
             <Scene key='feed' component={Feed} title='Feed' />
             <Scene key='listingDetails' component={listingDetails} title='listingDetails' />
             <Scene key="landing" type="reset" component={Landing} title="Home" />
-            <Scene key="map" component={MapPage} title="Map" initial={true}/>
+            <Scene key="map" component={MapPage} initial={true} hideNavBar={1}/>
             <Scene key="SignIn" component={SignIn} title="signin"/>
             <Scene key="signUp"  component={SignUp}/>
             <Scene type="reset" component={Landing} title="Home" />
