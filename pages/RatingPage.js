@@ -21,7 +21,7 @@ class RatingPage extends PureComponent {
                     <AirbnbRating
                         count={5}
                         reviews={["Terrible", "Bad", "OK", "Very Good", "Amazing"]}
-                        defaultRating={5}
+                        defaultRating={3}
                         size={40}
                         reviewColor={'#000'}
                     />
