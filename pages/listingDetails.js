@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, ScrollView, Text, Image, View } from 'react-native';
-import {Button, Footer, FooterTab} from 'native-base';
+import {Button, Footer, FooterTab, Form, Item, Input, Container, Content} from 'native-base';
 
 
 class listingDetails extends React.Component {
@@ -57,8 +57,8 @@ class listingDetails extends React.Component {
             return(
                 <Footer>
                     <FooterTab>
-                        <Button style={{ color: '#3F7E44' }} full >
-                            <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Reserved ✔️</Text>
+                        <Button success full >
+                            <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Reserved</Text>
                         </Button>
                     </FooterTab>
                 </Footer>
@@ -66,7 +66,7 @@ class listingDetails extends React.Component {
         } else return (
             <Footer>
                 <FooterTab>
-                    <Button full onPress={this.setState({reserved: true})} >
+                    <Button onPress={() => this.setState({reserved: true})} >
                         <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Reserve</Text>
                     </Button>
                 </FooterTab>
@@ -78,38 +78,49 @@ class listingDetails extends React.Component {
         const {restaurantName, foodName, pictureURL, quantity, description, postDate, expirationDate} = this.props;
 
         return (
-            <ScrollView  contentContainerStyle={styles.container} >
-                <Image source={{uri: pictureURL}} style={{width:'90%', aspectRatio:1, alignSelf:'center'}} />
-                <Text style={{textAlign:'left', marginLeft:10, fontSize:26}} > {restaurantName} </Text>
+            <Container>
 
-                <View style={{flexDirection:'row', justifyContent:'space-between', marginBottom:15, borderBottomWidth:.3, paddingBottom:10}} >
-                    <Text style={{fontSize:16, marginLeft:10}}> {foodName} </Text>
-                    <Text style={{fontSize:16, fontWeight:'bold', fontStyle:'italic', color:'red', marginRight:10}} > {quantity} left </Text>
-                </View>
+                <ScrollView>
+                    <Content style={{ padding: '2%' }}>
 
-                <Text style={{flexWrap:'wrap', fontSize:16}}>
-                    <Text style={{color:'grey', fontWeight:'bold'}}> Description: </Text>
-                    <Text style={{}}> {description} </Text>
-                </Text>
+                        <Form>
+                            <Item>
+                                <Input keyboardType="numeric" placeholder="What quantity would you like to reserve?" />
+                            </Item>
+                        </Form>
 
-                <Text style={{flexWrap:'wrap', fontSize:16}}>
-                    <Text style={{color:'grey', fontWeight:'bold'}}> Cooked Date: </Text>
-                    <Text style={{}}> {this.timeConverter(postDate)} </Text>
-                </Text>
+                        <Image source={{uri: pictureURL}} style={{width:'75%', aspectRatio:1, alignSelf:'center', marginVertical: 10}} />
+                        <Text style={{textAlign:'left', marginLeft:10, fontSize:16, fontWeight: 'bold'}} > {restaurantName} </Text>
 
-                <Text style={{flexWrap:'wrap', fontSize:16}}>
-                    <Text style={{color:'grey', fontWeight:'bold'}}> Pick Up By: </Text>
-                    <Text style={{}}> {this.timeConverter(expirationDate)} </Text>
-                </Text>
+                        <View style={{flexDirection:'row', justifyContent:'space-between', marginBottom:15, borderBottomWidth:.3, paddingBottom:10}} >
+                            <Text style={{fontSize:14, marginLeft:10}}> {foodName} </Text>
+                            <Text style={{fontSize:14, fontWeight:'bold', fontStyle:'italic', color:'red', marginRight:10}} > {quantity} left </Text>
+                        </View>
+
+                        <Text style={{flexWrap:'wrap', fontSize:14}}>
+                            <Text style={{color:'grey', fontWeight:'bold'}}>Description: </Text>
+                            <Text>{description}</Text>
+                        </Text>
+
+                        <Text style={{flexWrap:'wrap', fontSize:14}}>
+                            <Text style={{color:'grey', fontWeight:'bold'}}>Cooked Date: </Text>
+                            <Text>{this.timeConverter(postDate)}</Text>
+                        </Text>
+
+                        <Text style={{flexWrap:'wrap', fontSize:14}}>
+                            <Text style={{color:'grey', fontWeight:'bold'}}>Pick Up By: </Text>
+                            <Text>{this.timeConverter(expirationDate)}</Text>
+                        </Text>
+
+                    </Content>
+                </ScrollView>
+
                 
-                <Button
-                    style={{marginBottom:45, marginTop: 20, width: '90%', marginLeft: 'auto', marginRight: 'auto', justifyContent: 'center', borderRadius: 10, alignSelf:'center', alignItems:'center', bottom:0, position:'absolute'}}
-                    onPress = {() => this.onReserve()}
-                > 
-                    <Text style={{color: 'white', textAlign: 'center', justifyContent: 'center', fontSize:26}} >Reserve</Text> 
-                </Button>
+                {this.renderButton()}
 
-            </ScrollView>
+            </Container>
+
+
         )
     }
 }
