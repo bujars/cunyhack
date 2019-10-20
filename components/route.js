@@ -31,7 +31,6 @@ class TabIcon extends Component {
 const Routes = (props) => (
     <Router cardStyle={{ backgroundColor: 'white' }}>
         <ScrollView>
-            <Scene key="signUp"  component={SignUp} />
             <Scene type="reset" component={Landing} title="Home"/>
             <Scene key='feed' component={Feed} title='Feed' />
             <Scene key='listingDetails' component={listingDetails} title='listingDetails' />
