@@ -19,11 +19,12 @@ const Routes = (props) => (
             <Scene key="landing" type="reset" component={Landing} title="Home" />
             <Scene key="map" component={MapPage} title="Map"/>
             <Scene key="SignIn" component={SignIn} />
-            <Scene key="signUp"  component={SignUp} initial={true} hideNavBar={1}/>
+            <Scene key="signUp"  component={SignUp}  hideNavBar={1}/>
             <Scene type="reset" component={Landing} />
             <Scene key='feed' component={Feed} title='Feed' />
             <Scene key="landing" type="reset" component={Landing} title="Home"  />
-            <Scene key="map" component={MapPage} title="Map"/>
+            <Scene key="listingDetails" component={listingDetails} title="Details"  />
+            <Scene key="map" component={MapPage} hideNavBar={1} initial={true}/>
             <Scene key="foodListing" component={foodListingPage} title="Take a picture of your food"/>
             <Scene key="foodUpload" component={foodUploadPage} title="Complete post"/>
             <Scene key="reserveCart" component={ReserveCart} hideNavBar={1}/>

@@ -89,7 +89,7 @@ class map extends React.Component {
 				<MapView
 					provider={PROVIDER_GOOGLE}
 					onMapReady={this.onMapReady}
-					style={[styles.map, {marginBottom: this.state.marginBottom, height:'70%' }]}
+					style={[styles.map, {marginBottom: this.state.marginBottom, height:'60%' }]}
 					initialRegion={{
 						latitude: 40.7549,
 						longitude: -73.9840,
@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 		flex:1,
+		backgroundColor: 'transparent'
 	},
 	map: {
 		position: 'absolute',
