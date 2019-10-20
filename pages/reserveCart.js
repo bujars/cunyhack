@@ -17,7 +17,9 @@ class ReserveCart extends React.Component {
                     <Text style={{fontSize: 20, marginLeft: 'auto', marginRight: 'auto', marginTop: 50, borderBottomWidth:0}}>Reserve Cart</Text>
                 </Card>
                 <Card style={styles.cart}>
-                    
+                    <CardItem>
+                        <Item><Image/></Item>
+                    </CardItem>
                 </Card>
                 <Button style={styles.buttonSubmit}><Text style={{color: 'white'}}>Submit Reservation</Text></Button>
             </Container>
