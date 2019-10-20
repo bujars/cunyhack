@@ -14,18 +14,18 @@ import { Icon } from 'native-base';
 console.disableYellowBox = true;
 
 //Create a dedicated class that will manage the tabBar icon
-class TabIcon extends Component {
-    render() {
-      var color = this.props.selected ? '#00f240' : '#301c2a';
+// class TabIcon extends Component {
+//     render() {
+//       var color = this.props.selected ? '#00f240' : '#301c2a';
   
-      return (
-        <View style={{flex:1, flexDirection:'column', alignItems:'center', alignSelf:'center', justifyContent: 'center'}}>
-          <Icon style={{color: color}} name={this.props.iconName || "circle"} size={18}/>
-          <Text style={{color: color, fontSize: 12}}>{this.props.title}</Text>
-        </View>
-      );
-    }
-}
+//       return (
+//         <View style={{flex:1, flexDirection:'column', alignItems:'center', alignSelf:'center', justifyContent: 'center'}}>
+//           <Icon style={{color: color}} name={this.props.iconName || "circle"} size={18}/>
+//           <Text style={{color: color, fontSize: 12}}>{this.props.title}</Text>
+//         </View>
+//       );
+//     }
+// }
 
 const Routes = (props) => (
     <Router cardStyle={{ backgroundColor: 'white' }}>
@@ -55,7 +55,6 @@ const Routes = (props) => (
                 iconName='home'
                 iconColor='#3F7E44'
                 iconSize={24}
-                icon={TabIcon}
                 /> 
                 <Scene key="NonProfitProfile" component={NonProfitProfile} title="My Profile" />
             </Scene>
