@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     container: {
         bottom:0,
         position:'absolute',
-        height:'40%',
+        height:'30%',
         backgroundColor: 'transparent'
     },
     feedList:{
