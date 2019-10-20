@@ -3,6 +3,8 @@ import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'rea
 import {Actions} from 'react-native-router-flux';
 import { Container, Content, Form, Item, Input, Button, Card, CardItem, Header } from 'native-base';
 import { connect } from 'react-redux'
+import * as Permissions from 'expo-permissions';
+import { Camera } from 'expo-camera';
 import {addUser} from '../store/actions/NonProfitAction';
 const width= '80%';
 class SignUp extends React.Component { 
@@ -199,4 +201,3 @@ export default connect(
   mapStateToProps,
   {addUser}
 )(SignUp)
-
