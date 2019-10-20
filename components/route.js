@@ -18,10 +18,11 @@ const Routes = (props) => (
             <Scene type="reset" component={Landing} title="Home" />
             <Scene key='feed' component={Feed} title='Feed' />
             <Scene key="landing" type="reset" component={Landing} title="Home"  />
-            <Scene key="map" component={MapPage} title="Map"/>
+            <Scene key="map" component={MapPage} title="Map" initial={true}/>
             <Scene key="foodListing" component={foodListingPage} title="Take a picture of your food"/>
             <Scene key="foodUpload" component={foodUploadPage} title="Complete post"/>
-            <Scene key="NonProfitProfile" component={NonProfitProfile} title="My Profile" initial={true}/>
+            <Scene key="NonProfitProfile" component={NonProfitProfile} title="My Profile"/>
+            <Scene key="listingDetails" component={listingDetails} />
         </ScrollView>
     </Router>
 )

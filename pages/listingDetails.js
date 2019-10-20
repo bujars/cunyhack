@@ -1,10 +1,17 @@
 import React from 'react'
-import { StyleSheet, SafeAreaView, ScrollView, Text, TouchableOpacity, Image, View } from 'react-native';
-import {Button} from 'native-base';
+import { StyleSheet, ScrollView, Text, Image, View } from 'react-native';
+import {Button, Footer, FooterTab} from 'native-base';
 
 
 class listingDetails extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            reserved: false
+        };
+    }
+    
     pluralCheck = s => {
         if (s == 1) return " ago";
         else return "s ago";
@@ -44,8 +51,27 @@ class listingDetails extends React.Component {
         return Math.floor(seconds) + " second" + this.pluralCheck(seconds);
     };
 
-    onReserve = () => {
+    renderButton = () => {
 
+        if(this.state.reserved) {
+            return(
+                <Footer>
+                    <FooterTab>
+                        <Button style={{ color: '#3F7E44' }} full >
+                            <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Reserved ✔️</Text>
+                        </Button>
+                    </FooterTab>
+                </Footer>
+            )
+        } else return (
+            <Footer>
+                <FooterTab>
+                    <Button full onPress={this.setState({reserved: true})} >
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Reserve</Text>
+                    </Button>
+                </FooterTab>
+            </Footer>
+        )
     }
 
     render() {
@@ -61,17 +87,17 @@ class listingDetails extends React.Component {
                     <Text style={{fontSize:16, fontWeight:'bold', fontStyle:'italic', color:'red', marginRight:10}} > {quantity} left </Text>
                 </View>
 
-                <Text style={{flexWrap:'wrap', fontSize:12}}>
+                <Text style={{flexWrap:'wrap', fontSize:16}}>
                     <Text style={{color:'grey', fontWeight:'bold'}}> Description: </Text>
                     <Text style={{}}> {description} </Text>
                 </Text>
 
-                <Text style={{flexWrap:'wrap', fontSize:12}}>
+                <Text style={{flexWrap:'wrap', fontSize:16}}>
                     <Text style={{color:'grey', fontWeight:'bold'}}> Cooked Date: </Text>
                     <Text style={{}}> {this.timeConverter(postDate)} </Text>
                 </Text>
 
-                <Text style={{flexWrap:'wrap', fontSize:12}}>
+                <Text style={{flexWrap:'wrap', fontSize:16}}>
                     <Text style={{color:'grey', fontWeight:'bold'}}> Pick Up By: </Text>
                     <Text style={{}}> {this.timeConverter(expirationDate)} </Text>
                 </Text>
