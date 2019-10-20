@@ -5,21 +5,22 @@ import { Actions } from 'react-native-router-flux';
 class Feed extends React.Component {
 
     renderFoodName = (foodName) => {
-        if (foodName.length >14)
-            return <Text style={{fontSize:10}} > {foodName.substring(0,14)}... </Text>
+        if (foodName.length >17)
+            return <Text style={{fontSize:10, textAlign:'left'}} > {foodName.substring(0,17)}... </Text>
         else
             return <Text style={{fontSize:10}} > {foodName} </Text>
     }
 
     renderListingCard = (listing) => {
-        const {restaurantName, foodName, pictureURL, quantity, description, expirationDate,postDate} = listing.item[1][0];
-        let listingInfo = {restaurantName, foodName, pictureURL, quantity, description, expirationDate, postDate};
+        const {restaurantName, foodName, pictureURL, quantity, description, expirationDate, postDate, distanceAway} = listing.item[1][0];
+        let listingInfo = {restaurantName, foodName, pictureURL, quantity, description, expirationDate, postDate, distanceAway};
         return (
-            <TouchableOpacity style={styles.feedList}  onPress={() => Actions.listingDetails(listingInfo)} >
-                <Text style={{textAlign:'center', fontWeight:'bold'}} > {restaurantName} </Text>
-                <Image source={{uri: pictureURL}} style={{width:'100%', aspectRatio:1}} /> 
+            <TouchableOpacity style={{height:200, aspectRatio:.7, margin:10, padding:10, borderRadius:10, opacity:.85}}  onPress={() => Actions.listingDetails(listingInfo)} >
+                <Text style={{textAlign:'center', fontWeight:'bold', opacity:1}} > {restaurantName} </Text>
+                <Image source={{uri: pictureURL}} style={{width:'100%', aspectRatio:1, opacity:1}} /> 
                 {this.renderFoodName(foodName)}
-                <Text style={{fontStyle:'italic', color:'grey', fontSize:10}} > {quantity} left </Text>
+                <Text style={{ color:'#f54c4f', fontSize:10,opacity:1}} > {quantity} left </Text>
+                <Text style={{color:'grey', fontSize:10, fontStyle:'italic' }} > {distanceAway} mi </Text>
             </TouchableOpacity>
         )
     }
@@ -37,31 +38,36 @@ class Feed extends React.Component {
                     pictureURL: 'https://www.jennycancook.com/wp-content/uploads/2015/08/quick-easy-spaghetti-meatballs.jpg',
                     expirationDate: Math.floor(Date.now() / 1000),
                     postDate: Math.floor(Date.now() / 1000),
+                    distanceAway: .3,
                     quantity: 10
                 }]
             ]
             feedList.push(listing);
         }
         return (
-            <View style={styles.container} >
-                <Text style={{textAlign:'right'}} > FILTER ICON </Text>
+            <SafeAreaView style={styles.container} >
                 <FlatList
-                    numColumns={3}
+                    horizontal
+                    style={{marginRight:10, marginLeft:10, borderRadius:10,}}
                     data = {feedList}
                     renderItem = {this.renderListingCard}
                     keyExtractor = {(listingCard) => listingCard[0]}
                     initialNumToRender = {10}
                 />
-            </View>
+            </SafeAreaView>
         )
     }
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        bottom:0,
+        position:'absolute',
+        marginBottom: 35,
+        height:'30%',
     },
     feedList:{
-        width: '28%',
+        height: '25%',
+        aspectRatio:1,
         margin: '2.6%',
         marginVertical: 10,
         borderBottomLeftRadius: 7,
