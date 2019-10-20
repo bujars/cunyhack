@@ -88,8 +88,8 @@ class NonProfitProfile extends Component {
                     </Card>
                     <Modal visible={this.state.modalVisible} animationType={'slide'} >
                         <RatingPage 
-                            restaurantName={'Restaurant'}
-                            restaurantPicture={'http://angelosriverside.com/images/Angelos-Pizza-Logo.png'}
+                            restaurantName={'Zuma NYC'}
+                            restaurantPicture={'https://s3-media1.fl.yelpcdn.com/bphoto/4_2Pqfr80B_No34F8RkfpQ/o.jpg'}
                             onPress={this.handleOnPress.bind(this)}
                         />
                     </Modal>

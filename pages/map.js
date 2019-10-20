@@ -20,26 +20,33 @@ class map extends React.Component {
 
 	async componentDidMount() {
 		this._isMounted = true;
-		let resturantArr = this.props.feedList;
-		// let resturantArr = [
-		// 	{ name: 'Little Basil', location: [40.741180, -73.982200] },
-		// 	{ name: 'Bao Bao Cafe', location: [40.740830, -73.983470] },
-		// 	{ name: 'Noda', location: [40.744750, -73.988130] },
-		// 	{ name: 'Sabai', location: [40.744310, -73.983700] }
-		// ]
+		let resturantArr = [
+			{ name: 'Little Basil', location: [40.741180, -73.982200], pictureURL: 'https://s3-media3.fl.yelpcdn.com/bphoto/eew6imY5oO0qcpENpFRCEw/258s.jpg', foodName: 'Pad Thai', quantity:3, distanceAway: .05 },
+			{ name: 'Bao Bao Cafe', location: [40.740830, -73.983470], pictureURL: 'https://s3-media2.fl.yelpcdn.com/bphoto/0H7vQlou3cOHKjfoknwTHA/o.jpg', foodName: 'Bao Bao Noodles', quantity:4, distanceAway: .04 },
+			{ name: 'Boqueria', location: [40.740299, -73.993713], pictureURL: 'https://cdn-image.foodandwine.com/sites/default/files/1501086700/gambas-al-ajillo-XL-RECIPE0917.jpg',foodName: 'Gambas al Ajillo', quantity:2, distanceAway: .6 },
+			{ name: 'Chipotle', location: [41.954220, -75.280853], pictureURL: 'https://detoxinista.com/wp-content/uploads/2019/01/chipotle-burrito-bowl-recipe.jpg',foodName: 'Burrito Bowls', quantity:9, distanceAway: .1 },
+			{ name: 'Di Di Dumpling', location: [40.740180, -73.984590],  pictureURL: 'http://dididumpling.eatintakeout.net/media/3557/3.jpg?width=1080&height=1080', foodName: 'Beef PotStickers', quantity:6, distanceAway: .1 },
+			{ name: 'Haandi', location: [40.742400, -73.982340], pictureURL: 'https://s3-media4.fl.yelpcdn.com/bphoto/NINedu2Pb6j3TXz_kd3cCQ/o.jpg', foodName: 'Lamb Biryani', quantity:1, distanceAway: .2 },
+			{ name: 'Tacombi', location: [40.742670, -73.990330], pictureURL: 'https://s3-media1.fl.yelpcdn.com/bphoto/KpC1h8QFhBFXJfENxuZ6ZQ/o.jpg', foodName: 'Fish Tacos', quantity:2, distanceAway: .5 },
+			{ name: 'Zuma NYC', location: [40.750420, -73.980621], pictureURL: 'https://s3-media4.fl.yelpcdn.com/bphoto/tgKHteMZvAqGRfR6KVf1BQ/o.jpg', foodName: 'Corn on Cob', quantity:10, distanceAway: .7 },
+			{ name: 'Korea BBQ', location: [ 40.747230, -73.986480], pictureURL: 'https://s3-media4.fl.yelpcdn.com/bphoto/_RplZ_hTmM9trnhgJlQsMQ/o.jpg', foodName: 'Beef', quantity:10, distanceAway: .5 },
+			{ name: 'Hole Burgers', location: [40.746140,-73.977478], pictureURL: 'https://s3-media2.fl.yelpcdn.com/bphoto/LG_dFiqNKg1L2v25qSLdwQ/o.jpg', foodName: 'Bacon and Fries', quantity:2, distanceAway: .5 },
+		]
+		console.log(resturantArr[0].location[0])
 		let resturantPins = [];
 		resturantArr.map((item,i) => {
-			console.log('item: ', item[1]);
+			const {name, foodName, pictureURL, quantity, description, expirationDate, postDate, distanceAway} = item;
+			let listingInfo = {name, foodName, pictureURL, quantity, description, expirationDate, postDate, distanceAway};
 			resturantPins.push(
 				<MapView.Marker
 					key={i++}
 					coordinate={{
-						"latitude": item[1].latitude,
-						"longitude": item[1].longitude,
+						"latitude": item.location[0],
+						"longitude": item.location[1],
 					}}
-					title={item[1].restaurantName}>
+					title={item.name}>
 					<MapView.Callout>
-						<Text>{item[1].restaurantName}</Text>
+						<Text>{item.name}</Text>
 					</MapView.Callout>
 				</MapView.Marker>
 			)
@@ -118,7 +125,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 		flex:1,
-		backgroundColor: 'transparent'
 	},
 	map: {
 		position: 'absolute',

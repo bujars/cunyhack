@@ -59,11 +59,9 @@ export function getListings() {
 export function getNonProfitOrders() {
     data = [
         {
-            picture: 'https://image.shutterstock.com/image-photo/image-450w-722718082.jpg',
-            itemName: 'apple', quantity:2 
-        },
-        { picture: 'https://image.shutterstock.com/image-photo/image-450w-722718082.jpg', itemName: 'burgers', quantity: 5 },
-        { picture: 'https://image.shutterstock.com/image-photo/image-450w-722718082.jpg', itemName: 'pasta', quantity: 7 }
+            picture: 'https://s3-media4.fl.yelpcdn.com/bphoto/tgKHteMZvAqGRfR6KVf1BQ/o.jpg',
+            itemName: 'Corn On Cob', quantity:4 
+        }
     ]
     return {type: GET_ORDERS_SUCCESS, payload: data};
 }
