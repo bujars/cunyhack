@@ -48,17 +48,17 @@ class NonProfitProfile extends Component {
                     />
         }
     }
-    goToLanding =()=>{
-        Actions.landing()
-    }
+    // goToLanding =()=>{
+    //     Actions.home()
+    // }
     render() {
         return (
             <SafeAreaView>
-                <Card>
+                <Card style={{marginTop: 60}}>
                     
-                    <Button style={styles.backButton}onPress={()=> this.goToLanding()}>
+                    {/* <Button style={styles.backButton}onPress={()=> this.goToLanding()}>
                         <Text style={styles.backText}>{back}</Text>
-                    </Button>
+                    </Button> */}
                     <Text style={{fontSize: 30, marginLeft:"auto", marginRight:"auto"}}>Profile</Text>
                     <CardItem >
                             <Image
