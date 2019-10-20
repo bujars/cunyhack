@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet, SafeAreaView, Image, Text, TouchableOpacity, FlatList, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import {connect} from 'react-redux';
+
 
 class Feed extends React.Component {
 
@@ -12,7 +14,7 @@ class Feed extends React.Component {
     }
 
     renderListingCard = (listing) => {
-        const {restaurantName, foodName, pictureURL, quantity, description, expirationDate, postDate, distanceAway} = listing.item[1][0];
+        const {restaurantName, foodName, pictureURL, quantity, description, expirationDate, postDate, distanceAway} = listing.item[1];
         let listingInfo = {restaurantName, foodName, pictureURL, quantity, description, expirationDate, postDate, distanceAway};
         return (
             <TouchableOpacity style={{height:200, aspectRatio:.7, margin:10, padding:10, borderRadius:10, opacity:.85}}  onPress={() => Actions.listingDetails(listingInfo)} >
@@ -26,31 +28,31 @@ class Feed extends React.Component {
     }
 
     render() {
-        let feedList = [];
-        for (let i = 0; i<10; i++){
-            let listing = [
-                [`listingID${i}`], 
-                [{
-                    author: 'authorID',
-                    restaurantName: 'Italian To Go',
-                    foodName: 'Spaghetti And Meatball',
-                    description: 'Made 10 hours ago. Still good to eat.',
-                    pictureURL: 'https://www.jennycancook.com/wp-content/uploads/2015/08/quick-easy-spaghetti-meatballs.jpg',
-                    expirationDate: Math.floor(Date.now() / 1000),
-                    postDate: Math.floor(Date.now() / 1000),
-                    distanceAway: .3,
-                    quantity: 10
-                }]
-            ]
-            feedList.push(listing);
-        }
+        // let feedList = [];
+        // for (let i = 0; i<10; i++){
+        //     let listing = [
+        //         [`listingID${i}`], 
+        //         [{
+        //             author: 'authorID',
+        //             restaurantName: 'Italian To Go',
+        //             foodName: 'Spaghetti And Meatball',
+        //             description: 'Made 10 hours ago. Still good to eat.',
+        //             pictureURL: 'https://www.jennycancook.com/wp-content/uploads/2015/08/quick-easy-spaghetti-meatballs.jpg',
+        //             expirationDate: Math.floor(Date.now() / 1000),
+        //             postDate: Math.floor(Date.now() / 1000),
+        //             distanceAway: .3,
+        //             quantity: 10
+        //         }]
+        //     ]
+        //     feedList.push(listing);
+        // }
         return (
 
             <SafeAreaView style={styles.container} >
                 <FlatList
                     horizontal
                     style={{marginRight:10, marginLeft:10, borderRadius:10,}}
-                    data = {feedList}
+                    data = {this.props.feedList}
                     renderItem = {this.renderListingCard}
                     keyExtractor = {(listingCard) => listingCard[0]}
                     initialNumToRender = {10}
@@ -76,4 +78,11 @@ const styles = StyleSheet.create({
         flexDirection:'column'
     }
 })
-export default Feed;
+
+const mapStateToProps = state => {
+    return {
+        feedList: Object.entries(state.FeedReducer)
+    }
+}
+
+export default connect(mapStateToProps)(Feed);

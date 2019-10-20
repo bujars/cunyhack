@@ -97,19 +97,19 @@ class listingDetails extends React.Component {
                             <Text style={{fontSize:14, fontWeight:'bold', fontStyle:'italic', color:'red', marginRight:10}} > {quantity} left </Text>
                         </View>
 
-                        <Text style={{flexWrap:'wrap', fontSize:14}}>
+                        <Text style={{flexWrap:'wrap', fontSize:14, marginBottom:10}}>
                             <Text style={{color:'grey', fontWeight:'bold'}}>Description: </Text>
                             <Text>{description}</Text>
                         </Text>
 
-                        <Text style={{flexWrap:'wrap', fontSize:14}}>
+                        <Text style={{flexWrap:'wrap', fontSize:14, marginBottom:10}}>
                             <Text style={{color:'grey', fontWeight:'bold'}}>Cooked Date: </Text>
-                            <Text>{this.timeConverter(postDate)}</Text>
+                            <Text>{postDate}</Text>
                         </Text>
 
-                        <Text style={{flexWrap:'wrap', fontSize:14}}>
+                        <Text style={{flexWrap:'wrap', fontSize:14, marginBottom:10}}>
                             <Text style={{color:'grey', fontWeight:'bold'}}>Pick Up By: </Text>
-                            <Text>{this.timeConverter(expirationDate)}</Text>
+                            <Text>{expirationDate}</Text>
                         </Text>
 
                     </Content>

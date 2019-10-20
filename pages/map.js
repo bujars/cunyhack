@@ -27,20 +27,19 @@ class map extends React.Component {
 		// 	{ name: 'Noda', location: [40.744750, -73.988130] },
 		// 	{ name: 'Sabai', location: [40.744310, -73.983700] }
 		// ]
-		console.log('feedList: ', feedList)
 		let resturantPins = [];
 		resturantArr.map((item,i) => {
-			console.log(item)
+			console.log('item: ', item[1]);
 			resturantPins.push(
 				<MapView.Marker
 					key={i++}
 					coordinate={{
-						"latitude": item.location[0],
-						"longitude": item.location[1],
+						"latitude": item[1].latitude,
+						"longitude": item[1].longitude,
 					}}
-					title={item.name}>
+					title={item[1].restaurantName}>
 					<MapView.Callout>
-						<Text>{item.name}</Text>
+						<Text>{item[1].restaurantName}</Text>
 					</MapView.Callout>
 				</MapView.Marker>
 			)
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
 	let feedList = Object.entries(state.FeedReducer);
 	return {
-		feedList: feedList
+		feedList
 	}
 }
 

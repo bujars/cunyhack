@@ -43,7 +43,7 @@ const Routes = (props) => (
             <Scene key="foodListing" component={foodListingPage} title="Take a picture of your food"/>
             <Scene key="foodUpload" component={foodUploadPage} title="Complete post"/>
 
-            <Scene key='TabRoot' showLabel={false} hideNavBar tabs={true} initial>
+            <Scene key='TabRoot' showLabel={false} hideNavBar tabs={true} >
                 <Scene 
                 key="map" 
                 component={MapPage} 
