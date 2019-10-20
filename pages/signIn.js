@@ -66,9 +66,9 @@ class SignIn extends React.Component {
             //ScrollView is a generic scrolling container 
             //View is a container that supports layout with styling
             <Container style={styles.container}>
-                <Image style={styles.image} source={{uri : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLzueCaaDVq8PP-nx0491QUkqQtSF6hq2acO7Ix4LchOR7EOOZ&s"}}/>
+                <Image style={styles.image} source={require("../pages/images/unconsumed.png")}/>
                     
-                <Form>
+                <Form style={styles.form}>
                 <Item floatingLabel>
                     <Label>Email</Label>
                     <Input
@@ -88,17 +88,17 @@ class SignIn extends React.Component {
                 </Item>
 
                 </Form>
-                <Item style={{flexDirection: "row", justifyContent: "space-around"}}>
+                <Item  style={{flexDirection: "row", justifyContent: "space-around", borderBottomWidth: 0}}>
                     <Button style={styles.button}  rounded
                     onPress={() => this.login()}>
-                        <Text>Sign in</Text>
+                        <Text style={{color: "white"}}>Sign in</Text>
                     </Button>
-                    <Button  rounded success style={styles.button}
+                    {/* <Button  rounded success style={styles.button}
                         //When the sign up button is pressed, we call the goToSignUp function
                         onPress={this.goToSignUp}
                     > 
                         <Text>Sign up</Text>
-                    </Button>
+                    </Button> */}
                 </Item>
             </Container>
 
@@ -110,19 +110,27 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         //alignItems: "center",
-        justifyContent: "center"
     },
     button: {
-        marginTop : 20,
+        marginTop : 50,
         marginLeft: 0,
         marginRight: 0,
         width: "40%", 
-        justifyContent : "center"
+        justifyContent : "center",
+        backgroundColor: '#3F7E44'
     },
     image: {
-        width : 100, 
-        height : 100,
-        alignSelf: "center"
+        width : '100%', 
+        height : '25%',
     },
+    border:{
+        borderBottomWidth: 0
+    },
+    form:{
+        marginTop: 40,
+        width: '90%',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    }
 });
 export default SignIn

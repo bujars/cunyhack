@@ -3,9 +3,9 @@ import {Text, Image, StyleSheet} from 'react-native';
 import {CardItem, Icon, Right, Left, Button} from 'native-base';
 
 function OrderItem(props) {
-    const {picture, itemName, quantity, link} = props;
+    const {picture, itemName, quantity, onPress} = props;
     return (
-        <Button style={styles.container}>
+        <Button style={styles.container} onPress={() => onPress()}>
             <Left style={styles.leftContainer}>
                 <Image source={{ uri: picture }} style={styles.image} />
                 <Text style={{color: 'grey'}}>  Item: </Text>

@@ -45,6 +45,7 @@ class Feed extends React.Component {
             feedList.push(listing);
         }
         return (
+
             <SafeAreaView style={styles.container} >
                 <FlatList
                     horizontal

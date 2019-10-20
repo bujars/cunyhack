@@ -39,14 +39,22 @@ export function getCurrentUser(){
           });
     }
 }
+export function getListings() {
+    const data = [
+        [`listingID${i}`],
+        [{
+            author: 'authorID',
+            restaurantName: 'Italian To Go',
+            foodName: 'Spaghetti And Meatball',
+            description: 'Made 10 hours ago. Still good to eat.',
+            pictureURL: 'https://www.jennycancook.com/wp-content/uploads/2015/08/quick-easy-spaghetti-meatballs.jpg',
+            expirationDate: Math.floor(Date.now() / 1000),
+            postDate: Math.floor(Date.now() / 1000),
+            quantity: 10
+        }]
+    ]
+    return {type: GET_LISTINGS_SUCCESS, payload: data};
 
-export function getNonProfits() {
-    let {currentUser} = firebase.auth();
-    firebase.database().ref(`/users/${currentUser.uid}`).on('value', snapshot => {
-        snapshot.forEach(child => {
-            let nonProfitUsers = [];
-        });
-    })
 }
 export function getNonProfitOrders() {
     data = [

@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import { Container, Content, Form, Item, Input, Button, Card, CardItem } from 'native-base';
+import { Container, Content, Form, Item, Input, Button, Card, CardItem, Header } from 'native-base';
 import { connect } from 'react-redux'
 import * as Permissions from 'expo-permissions';
 import { Camera } from 'expo-camera';
@@ -73,17 +73,21 @@ class SignUp extends React.Component {
             password: this.state.password,
             phoneNumber: this.state.phoneNumber
         }
-        // this.props.addUser(user)
-        Actions.landing()
+        this.props.addUser(user)
+        Actions.SignIn()
     }
-    goSignIn = () => {
+    goToSignIn(){
         Actions.SignIn()
     }
     render() {
         return (
-
             <Container style={styles.content}>
-                <Content>
+                <Image
+                        source={require("../pages/images/unconsumed.png")}
+                        style={styles.logoImage}
+                            />
+                <Content style={{borderBottomWidth:0}}>
+                    
                     <Text style={styles.title}>Sign Up</Text>
                     <Form style={styles.form}>
                         <Text>Select Organization</Text>
@@ -122,6 +126,7 @@ class SignUp extends React.Component {
                         <Button style={styles.signUpButton} onPress={()=> this.onSubmit()}>
                             <Text style={styles.buttonText}>Submit</Text>
                         </Button>
+                        <Text style={styles.login}>Already have a Account? <Text style={styles.loginText} onPress={()=>this.goToSignIn()}>Log In</Text></Text>
                     </Form>
                 </Content>
             </Container>
@@ -150,7 +155,8 @@ const styles = StyleSheet.create({
         marginLeft: 'auto',
         marginRight: 'auto',
         justifyContent: 'center',
-        borderRadius: 10
+        borderRadius: 10,
+        backgroundColor: "#3F7E44"
     },
     buttonText: {
         color: 'white',
@@ -163,7 +169,9 @@ const styles = StyleSheet.create({
         marginBottom:20
     },
     content:{
-        marginTop: 100
+        // marginTop: 100,
+        borderBottomWidth: 0,
+        
     },
     containButtons: {
         flex: 1,
@@ -174,9 +182,19 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
     },
-    typeButton: {
-
+    login:{
+        marginLeft:"auto",
+        marginRight: "auto",
+        marginTop: 20
     },
+    loginText:{
+        color: 'skyblue'
+    },
+    logoImage:{
+        marginTop: 40,
+        width: '100%',
+        height: '25%'
+    }
     
 })
 const mapStateToProps = state => ({
@@ -186,4 +204,3 @@ export default connect(
   mapStateToProps,
   {addUser, fetch_feed}
 )(SignUp)
-// export default SignUp
