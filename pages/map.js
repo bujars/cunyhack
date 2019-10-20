@@ -3,9 +3,11 @@ import { StyleSheet, SafeAreaView, View, Text } from 'react-native'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import axios from 'axios';
 import { resume } from 'expo/build/AR';
+import {connect} from 'react-redux';
 import Feed from '../pages/Feed';
+import {fetch_feed} from '../store/actions/'
 
-export default class map extends React.Component {
+class map extends React.Component {
 	_isMounted = false;
 	constructor(props) {
 		super(props);
@@ -18,13 +20,14 @@ export default class map extends React.Component {
 
 	async componentDidMount() {
 		this._isMounted = true;
-		let resturantArr = [
-			{ name: 'Dennys store', location: [40.7678398, -73.9645291] },
-			{ name: 'jackies store', location: [40.7151678, -74.0116044] },
-			{ name: 'kevins store', location: [40.7557665, -73.99116459999999] },
-			{ name: 'engers store', location: [40.7478091, -73.9873339] }
-		]
-		console.log(resturantArr[0].location[0])
+		let resturantArr = this.props.feedList;
+		// let resturantArr = [
+		// 	{ name: 'Little Basil', location: [40.741180, -73.982200] },
+		// 	{ name: 'Bao Bao Cafe', location: [40.740830, -73.983470] },
+		// 	{ name: 'Noda', location: [40.744750, -73.988130] },
+		// 	{ name: 'Sabai', location: [40.744310, -73.983700] }
+		// ]
+		console.log('feedList: ', feedList)
 		let resturantPins = [];
 		resturantArr.map((item,i) => {
 			console.log(item)
@@ -86,7 +89,7 @@ export default class map extends React.Component {
 				<MapView
 					provider={PROVIDER_GOOGLE}
 					onMapReady={this.onMapReady}
-					style={[styles.map, {marginBottom: this.state.marginBottom }]}
+					style={[styles.map, {marginBottom: this.state.marginBottom, height:'70%' }]}
 					initialRegion={{
 						latitude: 40.7549,
 						longitude: -73.9840,
@@ -100,6 +103,7 @@ export default class map extends React.Component {
 					ref={ref => { this.mapView = ref }}>
 					{this.state.resturantPins}
 				</MapView>
+				<Feed/>
 			</SafeAreaView>
 		);
 	}
@@ -113,7 +117,8 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		right: 0,
 		justifyContent: 'flex-end',
-		alignItems: 'center'
+		alignItems: 'center',
+		flex:1,
 	},
 	map: {
 		position: 'absolute',
@@ -123,3 +128,12 @@ const styles = StyleSheet.create({
 		right: 0
 	}
 });
+
+const mapStateToProps = state => {
+	let feedList = Object.entries(state.FeedReducer);
+	return {
+		feedList: feedList
+	}
+}
+
+export default connect(mapStateToProps, {fetch_feed})(map);
