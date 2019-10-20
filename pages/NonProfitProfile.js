@@ -70,7 +70,7 @@ class NonProfitProfile extends Component {
                     <Card style={styles.profileSection}>
                         <CardItem >
                         <Text>Email: </Text>
-                        <Text>wlin041@gmail.com</Text>
+                        <Text>denny1@gmail.com</Text>
                         
                         </CardItem>
                         <CardItem >
