@@ -3,9 +3,11 @@ import { StyleSheet, SafeAreaView, View, Text } from 'react-native'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import axios from 'axios';
 import { resume } from 'expo/build/AR';
+import {connect} from 'react-redux';
 import Feed from '../pages/Feed';
+import {fetch_feed} from '../store/actions/'
 
-export default class map extends React.Component {
+class map extends React.Component {
 	_isMounted = false;
 	constructor(props) {
 		super(props);
@@ -18,13 +20,14 @@ export default class map extends React.Component {
 
 	async componentDidMount() {
 		this._isMounted = true;
-		let resturantArr = [
-			{ name: 'Little Basil', location: [40.741180, -73.982200] },
-			{ name: 'Bao Bao Cafe', location: [40.740830, -73.983470] },
-			{ name: 'Noda', location: [40.744750, -73.988130] },
-			{ name: 'Sabai', location: [40.744310, -73.983700] }
-		]
-		console.log(resturantArr[0].location[0])
+		let resturantArr = this.props.feedList;
+		// let resturantArr = [
+		// 	{ name: 'Little Basil', location: [40.741180, -73.982200] },
+		// 	{ name: 'Bao Bao Cafe', location: [40.740830, -73.983470] },
+		// 	{ name: 'Noda', location: [40.744750, -73.988130] },
+		// 	{ name: 'Sabai', location: [40.744310, -73.983700] }
+		// ]
+		console.log('feedList: ', feedList)
 		let resturantPins = [];
 		resturantArr.map((item,i) => {
 			console.log(item)
@@ -125,3 +128,12 @@ const styles = StyleSheet.create({
 		right: 0
 	}
 });
+
+const mapStateToProps = state => {
+	let feedList = Object.entries(state.FeedReducer);
+	return {
+		feedList: feedList
+	}
+}
+
+export default connect(mapStateToProps, {fetch_feed})(map);
