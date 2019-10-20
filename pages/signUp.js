@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import * as Permissions from 'expo-permissions';
 import { Camera } from 'expo-camera';
 import {addUser} from '../store/actions/NonProfitAction';
+import {fetch_feed} from '../store/actions/';
+
 const width= '80%';
 class SignUp extends React.Component { 
     constructor(props) {
@@ -22,7 +24,8 @@ class SignUp extends React.Component {
         };
     }
     componentDidMount(){
-        console.log(this.props.users)
+        console.log(this.props.users);
+        this.props.fetch_feed();
     }
     goToAbout = () => {
         Actions.landing()
@@ -199,5 +202,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  {addUser}
+  {addUser, fetch_feed}
 )(SignUp)

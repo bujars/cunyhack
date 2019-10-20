@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, ImageBackground } from 'react-native';
-import { Container, Content, Footer, FooterTab, Button } from 'native-base';
+import { Container, Footer, FooterTab, Button } from 'native-base';
 import * as Permissions from 'expo-permissions';
 import { Camera } from 'expo-camera';
 import { Actions } from 'react-native-router-flux';
@@ -36,7 +36,7 @@ class foodListing extends React.Component {
     };
 
     goToUpload = () => {
-        Actions.foodUpload(this.state.photos)
+        Actions.foodUpload({photo: this.state.photo})
     };
 
     renderButton = () => {
