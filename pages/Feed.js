@@ -28,6 +28,7 @@ class Feed extends React.Component {
             //     {this.renderFoodName(foodName)}
             //     <Text style={{fontStyle:'italic', color:'grey', fontSize:10}} > {quantity} left </Text>
             // </TouchableOpacity>
+
         )
     }
 
@@ -50,6 +51,7 @@ class Feed extends React.Component {
             feedList.push(listing);
         }
         return (
+
             <SafeAreaView style={styles.container} >
                 <FlatList
                     horizontal

@@ -39,7 +39,6 @@ export function getCurrentUser(){
           });
     }
 }
-
 export function getListings() {
     const data = [
         [`listingID${i}`],

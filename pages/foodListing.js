@@ -68,17 +68,21 @@ class foodListing extends React.Component {
                 <ImageBackground
                     key={0}
                     source={{ uri: this.state.photo }}
-                    style={{ aspectRatio: 1, width: '95%', marginVertical: 20, justifyContent: 'center', alignItems: 'center' }}
+                    style={{ aspectRatio: 1, marginVertical: 20, justifyContent: 'center', marginLeft: 40}}
                 />
             )
         } else return (
+            <View style={{ aspectRatio: 1 }}>
+
             <Camera 
-                style={{ flex: 1, aspectRatio: 1, marginVertical: 20 }} 
+                style={{ aspectRatio: 1, marginVertical: 20, marginLeft: 30 }} 
                 type={this.state.type} 
                 ref={ref => {
                     this.camera = ref;
                 }}
             />
+            </View>
+
         )
     }
 
