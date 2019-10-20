@@ -101,7 +101,7 @@ class NonProfitProfile extends Component {
 
 const styles = StyleSheet.create({
     cardStyle: {
-        width: 350
+        width: 350,
         height: Dimensions.get('screen').height
     },
     profileImage:{
@@ -128,8 +128,8 @@ const styles = StyleSheet.create({
         width: '90%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginBottom: 60
-        width: 350,
+        marginBottom: 60,
+        width: 350
        
     },
     headerStyle: {
