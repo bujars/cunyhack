@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 		flex:1,
+		backgroundColor: 'transparent'
 	},
 	map: {
 		position: 'absolute',

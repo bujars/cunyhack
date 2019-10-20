@@ -15,7 +15,7 @@ class Feed extends React.Component {
         const {restaurantName, foodName, pictureURL, quantity, description, expirationDate, postDate, distanceAway} = listing.item[1][0];
         let listingInfo = {restaurantName, foodName, pictureURL, quantity, description, expirationDate, postDate, distanceAway};
         return (
-            <TouchableOpacity style={{height:200, aspectRatio:.7, margin:10, padding:10, borderRadius:10, opacity:.85}}  onPress={() => Actions.listingDetails(listingInfo)} >
+            <TouchableOpacity style={{height:200, aspectRatio:.7, margin:10, padding:10, borderRadius:10}}  onPress={() => Actions.listingDetails(listingInfo)} >
                 <Text style={{textAlign:'center', fontWeight:'bold', opacity:1}} > {restaurantName} </Text>
                 <Image source={{uri: pictureURL}} style={{width:'100%', aspectRatio:1, opacity:1}} /> 
                 {this.renderFoodName(foodName)}
@@ -49,7 +49,7 @@ class Feed extends React.Component {
             <SafeAreaView style={styles.container} >
                 <FlatList
                     horizontal
-                    style={{marginRight:10, marginLeft:10, borderRadius:10,}}
+                    style={{marginRight:10, marginLeft:10, borderRadius:10, backgroundColor: 'transparent'}}
                     data = {feedList}
                     renderItem = {this.renderListingCard}
                     keyExtractor = {(listingCard) => listingCard[0]}
@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
     container: {
         bottom:0,
         position:'absolute',
-        marginBottom: 35,
         height:'30%',
+        backgroundColor: 'transparent'
     },
     feedList:{
         height: '25%',
@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         borderBottomLeftRadius: 7,
         borderBottomRightRadius: 7,
-        flexDirection:'column'
+        flexDirection:'column',
+        backgroundColor: 'transparent'
     }
 })
 export default Feed;
