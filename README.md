@@ -1,6 +1,6 @@
 # Unconsumed
 
-Unconsumed is mobile platform that allows resturants to post unconsumed food and non-profits to be able to reserve the food and then use it to distribute it to those in need
+Unconsumed is mobile platform that allows restaurants to post unconsumed food and non-profits to be able to reserve the food and then use it to distribute it to those in need
 
 ## How to get started
 
