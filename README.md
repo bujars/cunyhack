@@ -28,4 +28,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yRKxmd4y0B0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://www.youtube.com/embed/yRKxmd4y0B0
