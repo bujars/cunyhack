@@ -8,9 +8,9 @@ function OrderItem(props) {
         <Button style={styles.container} onPress={() => onPress()}>
             <Left style={styles.leftContainer}>
                 <Image source={{ uri: picture }} style={styles.image} />
-                <Text style={{color: 'grey'}}>  Item: </Text>
+                <Text style={{color: 'grey'}}>  Food: </Text>
                 <Text>{itemName}</Text>
-                <Text style={{color: 'grey'}} >    quantity: </Text>
+                <Text style={{color: 'grey'}} >    Orders: </Text>
                 <Text>{quantity}</Text>
             </Left>
             <Right>
@@ -34,9 +34,8 @@ const styles = StyleSheet.create({
     },
     image: {
         resizeMode: 'contain',
-        width: 30,
-        height: 50,
-        borderRadius: 50
+        width: '25%',
+        aspectRatio:1
     }
 })
 

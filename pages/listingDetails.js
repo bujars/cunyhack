@@ -1,6 +1,9 @@
 import React from 'react'
-import { StyleSheet, ScrollView, Text, Image, View } from 'react-native';
+import { StyleSheet, ScrollView, Text, Image, View, TouchableOpacity } from 'react-native';
 import {Button, Footer, FooterTab, Form, Item, Input, Container, Content} from 'native-base';
+import { Actions } from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+
 
 
 class listingDetails extends React.Component {
@@ -8,7 +11,8 @@ class listingDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            reserved: false
+            reserved: false,
+            quantity: 0
         };
     }
     
@@ -51,14 +55,21 @@ class listingDetails extends React.Component {
         return Math.floor(seconds) + " second" + this.pluralCheck(seconds);
     };
 
+    onReserve = () => {
+        this.setState({reserved: true});
+
+        setTimeout(function(){ Actions.reserveCart(); }, 1000);
+
+    }   
+
     renderButton = () => {
 
         if(this.state.reserved) {
             return(
                 <Footer>
                     <FooterTab>
-                        <Button success full >
-                            <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Reserved</Text>
+                        <Button success full  >
+                            <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Added</Text>
                         </Button>
                     </FooterTab>
                 </Footer>
@@ -66,8 +77,8 @@ class listingDetails extends React.Component {
         } else return (
             <Footer>
                 <FooterTab>
-                    <Button onPress={() => this.setState({reserved: true})} >
-                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Reserve</Text>
+                    <Button onPress={() => this.onReserve()} style={{backgroundColor:'#3F7E44'}} >
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Add To Cart</Text>
                     </Button>
                 </FooterTab>
             </Footer>
@@ -83,12 +94,6 @@ class listingDetails extends React.Component {
                 <ScrollView>
                     <Content style={{ padding: '2%' }}>
 
-                        <Form>
-                            <Item>
-                                <Input keyboardType="numeric" placeholder="What quantity would you like to reserve?" />
-                            </Item>
-                        </Form>
-
                         <Image source={{uri: pictureURL}} style={{width:'75%', aspectRatio:1, alignSelf:'center', marginVertical: 10}} />
                         <Text style={{textAlign:'left', marginLeft:10, fontSize:16, fontWeight: 'bold'}} > {restaurantName} </Text>
 
@@ -97,25 +102,35 @@ class listingDetails extends React.Component {
                             <Text style={{fontSize:14, fontWeight:'bold', fontStyle:'italic', color:'red', marginRight:10}} > {quantity} left </Text>
                         </View>
 
-                        <Text style={{flexWrap:'wrap', fontSize:14}}>
+                        <Text style={{flexWrap:'wrap', fontSize:14, marginBottom:10}}>
                             <Text style={{color:'grey', fontWeight:'bold'}}>Description: </Text>
                             <Text>{description}</Text>
                         </Text>
 
-                        <Text style={{flexWrap:'wrap', fontSize:14}}>
+                        <Text style={{flexWrap:'wrap', fontSize:14, marginBottom:10}}>
                             <Text style={{color:'grey', fontWeight:'bold'}}>Cooked Date: </Text>
-                            <Text>{this.timeConverter(postDate)}</Text>
+                            <Text>{postDate}</Text>
                         </Text>
 
-                        <Text style={{flexWrap:'wrap', fontSize:14}}>
+                        <Text style={{flexWrap:'wrap', fontSize:14, marginBottom:10}}>
                             <Text style={{color:'grey', fontWeight:'bold'}}>Pick Up By: </Text>
-                            <Text>{this.timeConverter(expirationDate)}</Text>
+                            <Text>{expirationDate}</Text>
                         </Text>
 
                     </Content>
                 </ScrollView>
 
-                
+                <View style={{flexDirection:'row', alignItems:'center', alignSelf:'center'}} >
+                    <TouchableOpacity onPress={() => this.setState({quantity: this.state.quantity-1})}  >
+                        <Icon name='minus-circle' size={30} color='#3F7E44' />
+                    </TouchableOpacity>
+
+                    <Text style={{fontSize:30, fontWeight:'bold',}} > {this.state.quantity} </Text>
+
+                    <TouchableOpacity onPress={() => this.setState({quantity: this.state.quantity+1})} >
+                        <Icon name='plus-circle' size={30} color='#3F7E44' />
+                    </TouchableOpacity>
+                </View>
                 {this.renderButton()}
 
             </Container>

@@ -100,7 +100,7 @@ export function fetch_feed(){
             latitude: -73.980621
         },
         8 : {
-            restaurantName: 'miss KOREA BBQ', 
+            restaurantName: 'KOREA BBQ', 
             foodName: 'Beef', 
             pictureURL: 'https://s3-media4.fl.yelpcdn.com/bphoto/_RplZ_hTmM9trnhgJlQsMQ/o.jpg', 
             quantity: 10, 
@@ -112,7 +112,7 @@ export function fetch_feed(){
             latitude: -73.986480
         },
         9 : {
-            restaurantName: 'Jackson Hole Burgers', 
+            restaurantName: 'Hole Burgers', 
             foodName: 'Bacon and Fries', 
             pictureURL: 'https://s3-media2.fl.yelpcdn.com/bphoto/LG_dFiqNKg1L2v25qSLdwQ/o.jpg', 
             quantity: 2, 

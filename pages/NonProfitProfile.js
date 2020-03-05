@@ -48,17 +48,17 @@ class NonProfitProfile extends Component {
                     />
         }
     }
-    goToLanding =()=>{
-        Actions.landing()
-    }
+    // goToLanding =()=>{
+    //     Actions.home()
+    // }
     render() {
         return (
             <SafeAreaView>
-                <Card>
+                <Card style={{marginTop: 60}}>
                     
-                    <Button style={styles.backButton}onPress={()=> this.goToLanding()}>
+                    {/* <Button style={styles.backButton}onPress={()=> this.goToLanding()}>
                         <Text style={styles.backText}>{back}</Text>
-                    </Button>
+                    </Button> */}
                     <Text style={{fontSize: 30, marginLeft:"auto", marginRight:"auto"}}>Profile</Text>
                     <CardItem >
                             <Image
@@ -70,7 +70,7 @@ class NonProfitProfile extends Component {
                     <Card style={styles.profileSection}>
                         <CardItem >
                         <Text>Email: </Text>
-                        <Text>wlin041@gmail.com</Text>
+                        <Text>denny1@gmail.com</Text>
                         
                         </CardItem>
                         <CardItem >
@@ -88,8 +88,8 @@ class NonProfitProfile extends Component {
                     </Card>
                     <Modal visible={this.state.modalVisible} animationType={'slide'} >
                         <RatingPage 
-                            restaurantName={'Restaurant'}
-                            restaurantPicture={'http://angelosriverside.com/images/Angelos-Pizza-Logo.png'}
+                            restaurantName={'Zuma NYC'}
+                            restaurantPicture={'https://s3-media1.fl.yelpcdn.com/bphoto/4_2Pqfr80B_No34F8RkfpQ/o.jpg'}
                             onPress={this.handleOnPress.bind(this)}
                         />
                     </Modal>
